@@ -8,6 +8,16 @@
   continue." I want to know when unexpected things happen so that I can inspect
   them and understand the underlying causes.
 
+# Usage policy
+
+- When Fable is the active model, minimize "credit" usage. Delegate routine work
+  to other models unless delegation would cost more in Fable-credits than just
+  doing it. MCP-session work is OK, but remember it can expose unanticipated
+  nuances and pursuing them can prove expensive; it may be cheaper (in
+  Fable-credits) to delegate that and work from subagent summaries. I value
+  Fable more for strategic decisions and creative problem-solving than for
+  implementation details.
+
 # Julia versions
 
 - `julia` uses the current release
@@ -17,7 +27,9 @@
 
 - Exploit `Revise` to amortize the cost of compilation time, which for Julia is
   quite high. This *requires* that you use the MCP server to avoid starting a
-  new Julia session each time.
+  new Julia session each time. The MCP server runs `Revise.revise()`
+  automatically before every eval, so edits to loaded packages are already
+  applied when your code runs; calling `Revise.revise()` yourself is redundant.
   Exceptions:
   + When debugging/developing non-Revisable packages. These include Revise itself
     and its dependencies.
