@@ -96,6 +96,10 @@ constructor `MyStruct{A,B}(a,b) = new{...}(...)` and an outer constructor `MyStr
 
 The suggested change for any such finding should include a test that the reachable call forms produce equal results for the same inputs. Fixing these is normally non-breaking (a looser signature accepts a strict superset; cascade methods are additions) — place them in Tier 2 unless a specific change drops a previously-accepted call.
 
+### 2m. `one` vs `oneunit`
+
+`one(T)` is *multiplicative identity* and not strictly required to be of type `T` (example: unitful quantities); `oneunit(T)` is *additive unity* and must be of type `T`.
+
 ---
 
 ## Phase 3 — Compile the report
