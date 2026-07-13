@@ -25,7 +25,7 @@
 
 # Debugging Julia code
 
-- Exploit `Revise` to amortize the cost of compilation time, which for Julia is
+- Use `Revise` to amortize the cost of compilation time, which for Julia is
   quite high. This *requires* that you use the MCP server to avoid starting a
   new Julia session each time. The MCP server runs `Revise.revise()`
   automatically before every eval, so edits to loaded packages are already
@@ -154,4 +154,6 @@ figures on the monitor.
   similar in the body of the commit message; that will trigger GitHub to
   auto-close the issue. If a commit closes multiple issues, you cannot provide
   ranges or comma-separated lists of numbers; use "Fixes #abc; fixes #def; ..."
-  
+
+- For commits written by agents, use "Assisted-by" rather than "Co-authored-by",
+  and fill in with the appropriate model/version/email details.
