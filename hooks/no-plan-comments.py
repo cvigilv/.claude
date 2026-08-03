@@ -24,7 +24,23 @@ CODE_EXT = {
 # user repeatedly has to strike out.
 PATTERNS = [
     ("plan/chunk reference", re.compile(r"CHUNK-\d", re.I)),
-    ("plan file reference", re.compile(r"ANALYSIS_(?:PLAN|SESSION)")),
+    # Case-sensitive: the all-caps spellings name the documents, while lowercase
+    # "candidates" is ordinary prose.
+    ("plan file reference", re.compile(
+        r"ANALYSIS_(?:PLAN|SESSION)"
+        r"|(?:DESIGN|API|INTEGRATION)_REVIEW_(?:PLAN|SESSION)"
+        r"|CANDIDATES|STATE_OF_CODE")),
+    # A section number is resolvable only if the document it cuts into is in the
+    # repository, so the token before the sign decides and is part of the match.
+    # Flagged: a function word or open bracket, which names nothing ("the §12d
+    # treatment", "(§3a)"), and an all-caps filename, which names a document that
+    # is typically untracked ("CANDIDATES §3a", "DESIGN_NOTES §4"). Left alone: a
+    # published standard, which carries its number into the citation ("IEEE 754
+    # §5.4", "RFC 8259 §7"), and an author-date reference.
+    ("section reference (§ with no in-repo document)",
+     re.compile(r"(?:[(\[,]"
+                r"|(?<![A-Za-z0-9])[a-z]+[ ]"
+                r"|(?<![A-Za-z0-9])[A-Z][A-Z0-9_]{2,}(?:\.\w+)?[ ])[ ]*§\s*\d")),
     ('"as planned"', re.compile(r"\bas planned\b", re.I)),
     ('"Regression:" tag', re.compile(r"\bregression:", re.I)),
     ('history ("Formerly")', re.compile(r"\bformerly\b", re.I)),
