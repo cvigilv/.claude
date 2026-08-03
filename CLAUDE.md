@@ -1,6 +1,8 @@
 # Text
 
 - use American spellings
+- avoid jargon and metaphors that aren't widely accepted by experts in the field
+- avoid making technical prose sound like a pitch deck
 
 # Stance
 
