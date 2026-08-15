@@ -146,13 +146,14 @@ tooling, and (with LaTeX math) carries equations and figures correctly to every 
 2. Probe for renderers and offer the richest available, naming what you found:
    - No `pandoc` → stop at Markdown, and **state so explicitly** with a one-line install hint,
      rather than presenting the Markdown as the finished artifact.
+   - `typst` → offer **PDF** (the default), and `.typ` on request for lifting into a manuscript.
    - `pandoc` + a LaTeX engine (`tectonic` / `xelatex` / `pdflatex`) → offer **PDF** (the
      default), and `.tex` on request for lifting into a manuscript.
    - `pandoc`, no LaTeX → offer **`.docx`** (Word is a first-class option: Pandoc converts LaTeX
      math to native Word equation objects and embeds figures) and/or **self-contained HTML**
      (MathJax, no external dependencies).
-3. Default to PDF when a LaTeX engine is present; otherwise `.docx` or HTML. The user may override
-   the target at any time.
+3. Default to PDF when a Typst engine is present, then LaTeX; otherwise `.docx` or HTML. The
+   user may override the target at any time.
 
 For figures to embed across targets, prefer **PNG** (LaTeX prefers PDF, HTML loves SVG, Word wants
 PNG — PNG is the safe cross-target default). Rendering the figures should generally have
@@ -160,7 +161,7 @@ been done in a previous step; if they haven't been rendered or appear stale, ask
 should be re-renedered as part of this skill. 
 
 *Optional upgrade:* if the project already uses **Quarto**, you may render through it instead — it
-wraps Pandoc and is cross-language. Do not introduce Quarto as a new dependency; Pandoc is the
+wraps Pandoc and is cross-language. Do not introduce Quarto as a new dependency; Typst is the
 baseline.
 
 ## Step 5: Active confirmation checkpoint
